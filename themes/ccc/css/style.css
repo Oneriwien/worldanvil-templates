@@ -1,113 +1,68 @@
-/**
-_______________________________________________________________________________________________________________
-   ______                            __               ________                        ________      __  
-  / ____/___  ____ ___  ____  __  __/ /____  _____   / ____/ /_  ____ _____  _____   / ____/ /_  __/ /_ 
- / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/  / /   / __ \/ __ `/ __ \/ ___/  / /   / / / / / __ \
-/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /     / /___/ / / / /_/ / /_/ (__  )  / /___/ / /_/ / /_/ /
-\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/      \____/_/ /_/\__,_/\____/____/   \____/_/\__,_/_.___/ 
-                    /_/                                                                                 
-_______________________________________________________________________________________________________________
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono:500|Fira+Sans+Condensed:500,500i,800,800i|Merriweather:400,400i|Vollkorn:700&subset=latin-ext');
+/*_______________________________________________________________________________________________________________
 
-By GorkamWorka / https://www.worldanvil.com/author/GorkamWorka
-_______________________________________________________________________________________________________________
-*/
+font-family: 'Merriweather', serif;
+font-family: 'Fira Sans Condensed', sans-serif;
+font-family: 'Fira Mono', monospace;
+font-family: 'Vollkorn', serif;
 
+    Display large csss editor
+_______________________________________________________________________________________________________________*/
+@media (min-width: 768px) {
+.col-sm-2 {
+    width: 30%;}
+.col-sm-10 {
+    width: 70%;}
+}
 
-/* fira-mono-medium - latin-ext_latin */ 
-@font-face 
-{
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 500;
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;           
-    src: local('Fira Mono Medium'), local('FiraMono-Medium'),
-        url('../fonts/fira-mono-v6-latin-ext_latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-        url('../fonts/fira-mono-v6-latin-ext_latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* fira-sans-condensed-regular - latin-ext_latin */
-@font-face 
-{
-    font-family: 'Fira Sans Condensed';
-    font-style: normal;
-    font-weight: 400;
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;           
-    src: local('Fira Sans Condensed Regular'), local('FiraSansCondensed-Regular'),
-        url('../fonts/fira-sans-condensed-v2-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-        url('../fonts/fira-sans-condensed-v2-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* fira-sans-condensed-italic - latin-ext_latin */
-@font-face 
-{
-    font-family: 'Fira Sans Condensed';
-    font-style: italic;
-    font-weight: 400;
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;           
-    src: local('Fira Sans Condensed Italic'), local('FiraSansCondensed-Italic'),
-        url('../fonts/fira-sans-condensed-v2-latin-ext_latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-        url('../fonts/fira-sans-condensed-v2-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* fira-sans-condensed-700 - latin-ext_latin */
-@font-face 
-{
-    font-family: 'Fira Sans Condensed';
-    font-style: normal;
-    font-weight: 700;
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;           
-    src: local('Fira Sans Condensed Bold'), local('FiraSansCondensed-Bold'),
-        url('../fonts/fira-sans-condensed-v2-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-        url('../fonts/fira-sans-condensed-v2-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* fira-sans-condensed-700italic - latin-ext_latin */
-@font-face 
-{
-font-family: 'Fira Sans Condensed';
-font-style: italic;
-font-weight: 700;
-unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;           
-src: local('Fira Sans Condensed Bold Italic'), local('FiraSansCondensed-BoldItalic'),
-    url('../fonts/fira-sans-condensed-v2-latin-ext_latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url('../fonts/fira-sans-condensed-v2-latin-ext_latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* roboto-slab-700 - latin-ext_latin */
-@font-face 
-{
-    font-family: 'Roboto Slab';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'),
-         url('../fonts/roboto-slab-v7-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-         url('../fonts/roboto-slab-v7-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* vollkorn-700 - latin-ext_latin */
-@font-face 
-{
-    font-family: 'Vollkorn';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Vollkorn Bold'), local('Vollkorn-Bold'),
-         url('../fonts/vollkorn-v8-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-         url('../fonts/vollkorn-v8-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
+/*color palette of the theme */
+:root {
+    --page-background-color: #202020; 
+    --title-gradient-color: #abacaf, #f0f0f0, #8d8d8f, #494a4d;
+    --content-background-color: #020204; 
+    --content-border-color: #abacaf; 
+    --content-border-params: 5px var(--content-border-color) solid;
+    /* left panel */
+    --panel-background-color: #97989e20;
+    --panel-border-color: #ffffff; 
+    --panel-border-params: 2px solid var(--panel-border-color);
+    /* backtoworld button */
+    --backtoworld-border-color: var(--content-border-color);
+    --backtoworld-border-params: 5px solid var(--backtoworld-border-color);
+    --backtoworld-fonts-family: 'Fira Sans Condensed', sans-serif;
+    --backtoworld-fonts-weight: 800;
+    --backtoworld-fonts-size: 20px;
+     /* backtoworld inverting color */
+    --backtoworld-fonts-color: var(--content-border-color);
+    --backtoworld-fonts-color-hover:var(--content-background-color);
+    --backtoworld-background-color: (--content-background-color);
+    --backtoworld-background-color-hover: var(--content-border-color);
+    /* World Title */ 
+    --worldtitle-fonts-family: 'Vollkorn', serif;
+    --worldtitle-fonts-weight: 700;
+    --worldtitle-fonts-size: 50px;
+    --worldtitle-fonts-gradient: var(--title-gradient-color);
+    /* blockquote */
+    --bloquote-background-color: #cfdaff35;
+
+  }
 /*_______________________________________________________________________________________________________________
 
     General presentation layer display
 _______________________________________________________________________________________________________________*/
 
 .presentation-interface {
-    background: #050510
+    background: var(--page-background-color);
 }
 /*_______________________________________________________________________________________________________________
     
     Article Page display       
 _______________________________________________________________________________________________________________*/
 .page { 
-	background: #10151A;
-    color:#a6a49c;
-    font-family: 'Fira Sans Condensed', sans-serif;
-	font-weight: 400;
-	line-height: 20px;
+    background: var(--content-background-color);
+	line-height: 1.3em;
     border-radius: 25px;
-    border: 7px  #3c3c3c solid;
+    border: var(--content-border-params);
 }
 /*rounding the top of cover image to adapt to the border*/
 .page .cover .img-responsive {
@@ -120,9 +75,9 @@ ________________________________________________________________________________
 _______________________________________________________________________________________________________________*/
 .user-css .panel,
 .user-css-extended .panel {
-    background: #102035;
+    background: var(--panel-background-color);
     margin-bottom: 20px;
-    border: 2px solid #83aec2;
+    border: var(--panel-border-params);
     border-radius: 25px;
     -webkit-box-shadow: 0 0px 0px rgba(0,0,0,.05) ;
     box-shadow: 0 0px 0px rgba(0,0,0,.5) ;
@@ -134,27 +89,31 @@ ________________________________________________________________________________
    backtoworld button display 
 _______________________________________________________________________________________________________________*/
 .page div .backtoworld a {
-    background: #317bc0;
-    color: #fffce5;
-    font-family: 'Fira Sans Condensed', sans-serif;
-    font-size: 13px;
+    background: var(--backtoworld-background-color);
+    color: var(--backtoworld-fonts-color);
+    font-family: var(--backtoworld-fonts-family);
+    font-weight: var(--backtoworld-fonts-weight);
+    font-size: var(--backtoworld-fonts-size);
     text-transform: uppercase;
     text-decoration: none;
     box-shadow: 1px 1px 3px rgba(68, 68, 68, 0.5);
     top: 0px;
     padding: 7px 10px;
     padding-left: 13px;
-    margin-left: 10px;
+    margin-left: 8px;
+    border: var(--backtoworld-border-params);
     border-radius: 0px 7px  7px 0px;
 }
 .page div .backtoworld a:hover {
-	background:#20308f;
-	color:#f3e78b;
-    font-family: 'Fira Sans Condensed', sans-serif;
-	font-size: 13px;
+    background:var(--backtoworld-background-color-hover);   
+	color:var(--backtoworld-fonts-color-hover);
+    font-family: var(--backtoworld-fonts-family);
+    font-weight: var(--backtoworld-fonts-weight);
+    font-size: var(--backtoworld-fonts-size);
 	text-transform: uppercase;
 	text-decoration: none;
-	box-shadow: 1px 1px 3px rgba(68, 68, 68, 0.5);
+    box-shadow: 1px 1px 3px rgba(68, 68, 68, 0.5);
+    border-radius: 0px 7px 7px 0px;
 }
 
 
@@ -163,14 +122,14 @@ ________________________________________________________________________________
     Side Panel display 
 _______________________________________________________________________________________________________________*/
 .page .world-title {
-    font-size: 50px;
-    font-family: 'Roboto Slab', serif;
-    font-weight: 700;
+    font-family: var(--worldtitle-fonts-family);
+    font-weight: var(--worldtitle-fonts-weight);
+    font-size: var(--worldtitle-fonts-size);
     text-transform: uppercase;
-    background: -webkit-linear-gradient(#2982a5, #36acdb, #2982a5, #206783);
+    background: -webkit-linear-gradient(var(--worldtitle-fonts-gradient));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: #36acdb;
+    color: #0a4486;
     margin-top: 40px;
     padding-bottom: 5px;
 }
@@ -180,22 +139,18 @@ ________________________________________________________________________________
     font-family: 'Vollkorn';
     font-weight: 700;
     text-transform: uppercase;
-    background: -webkit-linear-gradient(#1caae2, #1cbfff, #1994c5, #15759b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: #36acdb;
+    color: #ff0000;
+    line-height: 1.3em;
     padding-top: 10px;
-    border-bottom: 2px inset steelblue;
+    margin-top: 45px;
+    border-bottom: 2px inset #151618;
 }
 
 .page h2 {
-    background: -webkit-linear-gradient(#39b3e4, #267b9c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: #36acdb;
-	font-family: 'Roboto Slab', serif;
+    color: #5877ff;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: 800;
     font-size: 40px;
-    font-weight: 700;
     text-transform: capitalize;
     border-bottom: 0px solid;
 	padding-top: 5px;
@@ -208,12 +163,12 @@ ________________________________________________________________________________
     }
 
 .page h3 {
-    color:#36acdb;
-    font-family: 'Roboto Slab', serif;
+    color:#1c78e2;
+    font-family: 'Fira Sans Condensed', sans-serif;
     font-size: 25px;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: capitalize;
-    border-bottom: 1px solid #36acdb;
+    border-bottom: 1px solid #1c78e2;
     padding-bottom: 0px;
     padding-top: 5px;
     margin-bottom: 10px
@@ -222,7 +177,7 @@ ________________________________________________________________________________
     .page h3.world-currentDate{
         font-family: 'Fira Mono', monospace;
         font-style: normal;
-        color: #369ccb;
+        color: #1c78e2;
         font-size: 18px;
         margin-top: 10px;
         margin-bottom: 10px;
@@ -280,18 +235,16 @@ ________________________________________________________________________________
 .page hr {
     border-color: #804033;
 }
-
 .page blockquote {
-    background: #1c4f7e;
+    background: #0b2036;
     padding: 20px;
     margin: 10px;
-    border-left: 10px #3d87ff solid;
+    border-left: 10px #2c589e solid;
     border-radius: 20px;
 	font-family: 'Fira Sans Condensed';
     font-size: 22px;
     line-height: 1.10em;
 }
-
 .user-css blockquote .author {
     display: block;
     font-size: 15px;
