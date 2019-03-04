@@ -1,0 +1,265 @@
+h2
+{
+    font-size: 2em;
+    font-weight: 700;
+    padding-left: 0%;}
+ .personnal-info-label {
+    padding-left: 7%;
+    font-size: 1.3em;
+    font-weight: 600;
+    font-family: sans-serif;}
+ .personnal-info-value {
+    padding-left: 12%;
+    font-size: 1.2em;
+    font-weight: 400;
+    font-family: sans-serif;}
+ .social-score-label {
+   font-size: 1.3em;
+   font-weight: 600;
+   text-align: right !important;
+   font-family: sans-serif;
+   padding-right: 7px;}
+ .social-score-rank{
+    font-size: 1.3em;
+    font-weight: 400;
+    text-align: left;
+    font-family: sans-serif;
+    padding-left: 0%;}
+ .social-score-full-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #2b2b2b;
+    border-radius: 50%;
+    border: 1.5px solid black;
+    display: inline-block;}
+ .social-score-empty-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 1.5px solid black;
+    display: inline-block;}
+ .locked-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #9c9c9c;
+    border-radius: 50%;
+    border: 1.5px solid black;
+    display: inline-block;}
+ /* Earth Ring*/
+ .ring-value{
+    padding: 1%;
+    margin: 2%;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 700; 
+    border-radius: 50%;
+    border: 1px black solid;
+    background-color: #efefdf;
+    height: 35px;
+    width: 35px;
+ }
+ .ring-name {
+    margin-top: 2%;
+    color: #3f3f3f;
+    font-weight: 600;
+    text-align: center;
+    padding: 1%;
+ }
+ .attribut-name{
+   text-align: left;
+   font-size: 1.1em;
+   font-weight: 400; 
+ }
+ .attribut-value{
+   text-align: left;
+   font-size: 1.1em;
+   font-weight: 600;
+ }
+ .earth-ring {
+    border-radius: 10%;
+    background-color: #c7b18c;
+    border: 1.5px solid black;
+    margin-right: 1.2%;
+    margin-left: 5%;}
+ .earth-ring .ring-header {
+   font-size: 1.5em;
+    border-bottom: 0.5px solid black;}
+ .earth-ring .ring-attribut {
+   font-size: 1.3em;
+   background-color: #f3ebdc;
+    border-bottom: 0.5px solid black;}
+ /* water Ring*/
+ .water-ring {
+    background-color: #40c9ff;
+    border-radius: 10%;
+    margin-right: 1.2%;
+    border: 1.5px solid black;
+    margin-right: 1.2%;}
+ .water-ring .ring-header {
+   font-size: 1.5em;
+    border-bottom: 0.5px solid black;}
+ .water-ring .ring-attribut {
+   font-size: 1.3em;
+   background-color: #8adeff;
+    border-bottom: 0.5px solid black;}
+ /* air Ring*/
+ .air-ring {
+    background-color: #9bffff;
+    border-radius: 10%;
+    border: 1.5px solid black;
+    margin-right: 1.2%;}
+ .air-ring .ring-header {
+    border-bottom: 0.5px solid black;
+    font-size: 1.5em;}
+ .air-ring .ring-attribut {
+   font-size: 1.3em;
+   background-color: #cbffff;
+    border-bottom: 0.5px solid black;}
+ /* fire Ring*/
+ .fire-ring {
+    background-color: #ffae00;
+    border-radius: 10%;
+    border: 1.5px solid black;
+    margin-right: 1.2%;}
+ .fire-ring .ring-header {
+   font-size: 1.5em;
+    border-bottom: 0.5px solid black;}
+ .fire-ring .ring-attribut {
+   font-size: 1.3em;
+   background-color: #ffd271;
+    border-bottom: 0.5px solid black;}
+ /* void Ring*/
+ .void-ring {
+    border-radius: 10%;
+    background-color: #dddddd;
+    border: 1.5px solid black;
+    margin-right: 1.2%;}
+ .void-ring .ring-header {
+   font-size: 1.5em;
+    border-bottom: 0.5px solid black;}
+ .void-ring .ring-attribut {
+   font-size: 1.3em;
+    background-color: #f1f1f1;
+    border-bottom: 0.5px solid black;}
+ .void-ring .void-point-label{   text-align: center;
+   font-size: 1.1em;
+   font-weight: 400; }
+ .void-ring .full-dot {
+    height:9px;
+    width:9px;
+    background-color: #2b2b2b;
+    border-radius: 50%;
+    border: 1.5px solid black;
+    display: inline-block;}
+ .void-ring .void-point-bar{
+    padding-right: 5%;
+    padding-left: 5%;
+ }
+ .void-ring .empty-dot {
+    height:9px;
+    width:9px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 1.5px solid black;
+    display: inline-block;}
+ .void-ring .temporary-dot {
+    height:9px;
+    width:9px;
+    background-color: #d1d1d1;
+    border: 0.8px solid black;
+    display: inline-block;}
+ /* SkillTable */
+ .skillTable-title{
+    margin-right: 0%;
+    margin-left: 0%;}
+ .skillTable{
+    margin-left: 0%;
+    margin-right: 0%;
+    border-top: solid 1px #d84400;}
+ .skillTable .skill-name{
+   font-size: 1.2em;
+   font-weight: 500;
+ }
+ .skillTable .skill-score{
+    padding-left: 0%;
+   font-size: 1.1em;
+   font-weight: 600;
+ }
+ .skillTable .skill-associated-attr{
+   font-size: 1.1em;
+   font-weight: 400;
+ }
+ .skillTable .skill-special{
+   font-size: 1.1em;
+   font-weight: 300;
+ }
+ .skillTable .skills-row-odd{
+    background-color: #fff4eb;
+    border-bottom: solid 1px #d84400;
+    border-left: solid 1px #d84400;
+    border-right: solid 1px #d84400;}
+ .skillTable .skills-row-even{
+    background-color: #ffdebf;
+    border-bottom: solid 1px #d84400;
+    border-left: solid 1px #d84400;
+    border-right: solid 1px #d84400;}
+ /* Health and Armor Panel */
+ .health-panel{
+    margin-left:2%;}
+ .woundsTable .wound-full .small-table-value{
+    color: #009507;
+    font-size: 1.3em;
+    font-weight: 600;}
+ .woundsTable .wound-damaged .small-table-value{
+    color: #0069af;
+    font-size: 1.3em;
+    font-weight: 600;}
+ .woundsTable .wound-empty .small-table-value{
+    color: #aa0000;
+    font-size: 1.3em;
+    font-weight: 800;}
+
+.small-table-label{
+   font-size: 1.1em;
+   font-weight: 600;
+}
+.small-table-header{
+   font-size: 1.2em;
+}
+
+.small-table-value{
+   font-size: 1.3em;
+}
+.weaponTable{
+   margin-right: 0%;
+   margin-left: 0%;
+}
+.Weapon-block{
+   border-top: 1px solid #6c1400;
+   margin-right:2%; 
+}
+.Weapon-block .weapon-block-title{
+   font-weight: 600;
+   font-size: 1.3em;
+   text-align: center;
+   background-color: #ffdebf;
+   border-right: 1px solid #6c1400;
+   border-left: 1px solid #6c1400;
+   border-bottom: 1px solid #6c1400;
+}
+.weapon-block-data .row{
+   background-color: #ffdebf;
+   border-right: 1px solid #6c1400;
+   border-left: 1px solid #6c1400;
+   border-bottom: 1px solid #6c1400;
+}
+.weapon-block-data .weapon-block-data-label{
+   font-size: 1.1em;   
+   font-weight: 600;
+}
+.weapon-block-data .weapon-block-data-value{
+   font-size: 1.2em;
+   background-color: #e8e7e7;
+   border-left: 1px solid #6c1400;
+}

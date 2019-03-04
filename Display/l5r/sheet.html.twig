@@ -1,0 +1,730 @@
+{% macro displayRingContent(name1, score1, name2, score2, ringName) %}
+   <div class="row ring-header">
+        <div class="col-md-2 ring-logo"></div>  
+        <div class="col-md-6 ring-name">{{ringName}}</div>
+        <div class="col-md-4 ring-value">{{min(score1,score2)}}</div>  
+    </div>
+    <div class="row ring-attribut">
+        <div class="col-md-8 attribut-name">{{name1}}</div>
+        <div class="col-md-4 attribut-value">{{score1}}</div>  
+    </div>    
+    <div class="row ring-attribut">
+        <div class="col-md-8 attribut-name">{{name2}}</div>
+        <div class="col-md-4 attribut-value">{{score2}}</div>  
+    </div>
+{% endmacro %}
+{% macro displayVoidRingContent(score, currentPoints) %}
+    <div class="row ring-header">
+        <div class="col-md-2 ring-logo"></div>  
+        <div class="col-md-6 ring-name">Void</div>
+        <div class="col-md-3 ring-value">{{score}}</div>  
+    </div>
+    <div class="row ring-attribut">
+        <div class="col-md-12">
+            <div class="row void-point-label">
+                <div class="col-md-12">
+                    Void Points
+                </div>
+            </div>
+            <div class="row void-point-bar">
+                <div class="col-md-12">
+                    {% if currentPoints is defined %}
+                        {% for i in range(0,9) %}
+                            {% if currentPoints > i %}
+                                <span class="full-dot"></span>
+                            {% else %}  
+                                {% if score > i %}
+                                    <span class="empty-dot"></span>
+                                {% else %}  
+                                    <span class="temporary-dot"></span>
+                                {% endif %}   
+                            {% endif %}                 
+                        {% endfor %}                 
+                    {% endif %} 
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+{% macro displaySocialScore(score, name) %}
+   <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6 social-score-label">{{name}}</div>
+            <div class="col-md-5 social-score-rank">{{ score // 10 }}</div>    
+        </div>
+        <div class="row">
+            {% set unityScore = score % 10 %}
+            {% if unityScore is defined %}
+                <span class="spacer col-md-1"></span>
+                {% for i in range(0,9) %}
+                    {% if unityScore > i %}
+                        <span class="social-score-full-dot"></span>
+                    {% else %}  
+                        <span class="social-score-empty-dot"></span>
+                    {% endif %}                 
+                {% endfor %}    
+                <span class="spacer col-md-1"></span>             
+            {% endif %}   
+        </div>
+   </div>
+{% endmacro %}
+{% macro displaySkillTable (stringtable) %}
+    {% if stringtable is defined %}
+        {% set cpt = 1 %}
+        {% set stringTab = stringtable|trim |split(';') %} 
+        {% for string in stringTab %}
+                {% if string is defined and string|length > 0 %}
+                    {% if cpt is even %}
+                    <div class="row skills-row-even">
+                    {% else %}
+                    <div class="row skills-row-odd">
+                    {% endif %}
+                        {% set valueTab = string|trim |split('|') %} 
+                        <div class="col-md-3 skill-name">{{ valueTab[0] }}</div>
+                        {% set score = valueTab[1]|number_format %}
+                        <div class="col-md-1 skill-score">{{score}}</div>
+                        <div class="col-md-1 skill-associated-attr">{{ valueTab[2] }}</div>
+                        <div class="col-md-7 skill-special">{{  valueTab[3] }}</div>    
+                    </div>                                  
+                {% endif %}
+            {% set cpt = cpt + 1 %}
+        {% endfor %}
+    {% endif %}   
+{% endmacro %}
+{% macro displayWeaponTable (stringtableWeapon) %}
+    {% if stringtableWeapon is defined %}
+        {% set cpt = 1 %}
+        {% set stringTabWeapon = stringtableWeapon|trim |split(';') %} 
+        {% for stringWeapon in stringTabWeapon %}
+            {% if stringWeapon is defined and stringWeapon|length > 0 %}
+                <div class="col-md-4 Weapon-block">
+                    <div class="row weapon-block-title">
+                        Weapon
+                    </div>
+                    <div class="row weapon-block-data">
+                        <div class="col-md-12">
+                         {% set valueTab = stringWeapon|trim |split('|') %} 
+                            <div class="row">
+                                <div class="col-md-6 weapon-block-data-label">Type</div>
+                                <div class="col-md-6 weapon-block-data-value">{{ valueTab[0] }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 weapon-block-data-label">Attack Roll</div>
+                                <div class="col-md-6 weapon-block-data-value">{{ valueTab[1] }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 weapon-block-data-label">Damage Roll</div>
+                                <div class="col-md-6 weapon-block-data-value">{{ valueTab[2] }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 weapon-block-data-label">Bonus</div>  
+                                <div class="col-md-6 weapon-block-data-value">{{ valueTab[3] }}</div>                               
+                            </div>
+                            <div class="row">                             
+                                <div class="col-md-6 weapon-block-data-label">Notes</div> 
+                                <div class="col-md-6 weapon-block-data-value">{{ valueTab[4] }}</div>                               
+                            </div>                     
+                        </div>
+                    </div>
+                </div>                                   
+            {% endif %}
+            {% set cpt = cpt + 1 %}
+        {% endfor %}
+    {% endif %}   
+{% endmacro %}
+{% import _self as macros %}
+    <div class="row l5r-rpg-system"> 
+    {% if variables.portrait_image is defined  and variables.portrait_image !=""%}
+        <div class="col-md-8">
+    {% else %}
+        <div class="col-md-12">
+    {% endif %}
+            {% if variables.page_title  is defined %} 
+                <h1>{{ variables.page_title  }}</h1>
+            {% endif %}
+            <div class="row">
+                <div class="col-md-8 personnal-info-table">
+                    <h2> Personnal Informations</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md personnal-info-label">Name</div>
+                                {% if variables.name is defined %}
+                                    <div class="col-md personnal-info-value">{{ variables.name}}</div>
+                                {% else %}
+                                    <div class="col-md personnal-info-value">None</div>
+                                {% endif %} 
+                            </div>
+                            <div class="row">
+                                <div class="col-md personnal-info-label">Clan</div>
+                                {% if variables.clan is defined %}
+                                    <div class="col-md personnal-info-value">{{ variables.clan}}</div>
+                                {% else %}
+                                    <div class="col-md personnal-info-value">None</div>
+                                {% endif %} 
+                            </div>
+                            <div class="row">
+                                <div class="col-md personnal-info-label">School</div>
+                                {% if variables.school is defined %}
+                                    <div class="col-md personnal-info-value">{{ variables.school}}</div>
+                                {% else %}
+                                    <div class="col-md personnal-info-value">None</div>
+                                {% endif %} 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md personnal-info-label">Rank</div>
+                                {% if variables.rank is defined %}
+                                    <div class="col-md personnal-info-value">{{ variables.rank}}</div>
+                                {% else %}
+                                    <div class="col-md personnal-info-value">None</div>
+                                {% endif %} 
+                            </div>
+                            <div class="row">
+                                <div class="col-md personnal-info-label">Experience</div>
+                                {% if variables.experience is defined %}
+                                    <div class="col-md personnal-info-value">{{ variables.experience}}</div>
+                                {% else %}
+                                    <div class="col-md personnal-info-value">None</div>
+                                {% endif %} 
+                            </div>
+                            <div class="row">
+                                <div class="col-md personnal-info-label">Insight</div>
+                                {% if variables.insight is defined %}
+                                    <div class="col-md personnal-info-value">{{ variables.insight}}</div>
+                                {% else %}
+                                    <div class="col-md personnal-info-value">None</div>
+                                {% endif %} 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 social-score-table">
+                    <h2>Social Scores</h2>
+                    <div class="row">
+                        {% if variables.honor is defined %}
+                            {{ macros.displaySocialScore(variables.honor,"Honor")}}
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        {% if variables.glory is defined %}
+                            {{ macros.displaySocialScore(variables.glory,"Glory")}}
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        {% if variables.status is defined %}
+                            {{ macros.displaySocialScore(variables.status,"Status")}}
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        {% if variables.taint is defined %}
+                            {{ macros.displaySocialScore(variables.taint,"Taint")}}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if variables.portrait_image is defined %}
+        <div class="col-md-4">
+                <div> [img:{{ variables.portrait_image }}|nolink] </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <h2> </h2>
+        {% if variables.stamina is defined and variables.willpower is defined  %}
+            <div class="col-md-2 earth-ring">
+                {{ macros.displayRingContent("Stamina",variables.stamina,"Willpower",variables.willpower,"Earth") }}
+            </div>
+        {% endif %}
+        {% if variables.strength is defined and variables.perception is defined  %}
+            <div class="col-md-2 water-ring">
+                {{ macros.displayRingContent("Strength",variables.strength,"Perception",variables.perception,"Water") }}
+            </div>
+        {% endif %}   
+        {% if variables.reflexes is defined and variables.awareness is defined  %}
+            <div class="col-md-2 air-ring">
+                {{ macros.displayRingContent("Reflexes",variables.reflexes,"Awareness",variables.awareness,"Air") }}
+            </div>
+        {% endif %}  
+            {% if variables.agility is defined and variables.intelligence is defined  %}
+            <div class="col-md-2 fire-ring">
+                {{ macros.displayRingContent("Agility",variables.agility,"Intelligence",variables.intelligence,"Fire") }}
+            </div>
+        {% endif %}
+        {% if variables.void is defined and  variables.void_points is defined %}
+            <div class="col-md-2 void-ring">
+                {{ macros.displayVoidRingContent(variables.void,variables.void_points) }}
+            </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="row skillTable-title"> Skills </h2>
+            <div class="row skillTable">
+                <div class="col-md-12">
+                    {% if variables.skills is defined and variables.skills|length >0 %}
+                        {{ macros.displaySkillTable (variables.skills) }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row weaponTable">
+                {% if variables.weapon_table  is defined and variables.weapon_table |length >0 %}
+                    {{ macros.displayWeaponTable (variables.weapon_table ) }}
+                {% endif %}
+            </div>
+        </div> 
+        <div class="col-md-3 health-panel">
+            <h2 class="row">Initiative</h2>
+            <div class="row">
+                <div class="col-md-12 initTable">
+                    <div class="row small-table-row">
+                        <div class="col-md-8 small-table-label">
+                            Ins. Rank / Ref.
+                        </div>
+                        <div class="col-md-4 small-table-value">    
+                            {% if variables.reflexes is defined and variables.rank is defined %}
+                                {{ variables.rank }} / {{ variables.reflexes }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row small-table-row">
+                        <div class="col-md-8 small-table-label">
+                            Initiative Modifier
+                        </div>
+                        <div class="col-md-4 small-table-value">    
+                            {% if variables.initiative__modifiers is defined %} 
+                                {{ variables.initiative__modifiers }} 
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row small-table-row">
+                        <div class="col-md-8 small-table-label">
+                            Current Initiative
+                        </div>
+                        <div class="col-md-4 small-table-value">   
+                            {% if variables.current_initiative  is defined %} 
+                                {{ variables.current_initiative  }} 
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <h2 class="row">Defense</h2>
+            <div class="row">
+                <div class="col-md-12 armorTnTable">
+                    <div class="row small-table-row">
+                        <div class="col-md-8 small-table-label">
+                            Natural TN
+                        </div>
+                        <div class="col-md-4 small-table-value">    
+                            {% if variables.reflexes is defined %}
+                                {{ 5 + (variables.reflexes * 5 ) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row small-table-row">
+                        <div class="col-md-8 small-table-label">
+                            Defense Modifier
+                        </div>
+                        <div class="col-md-4 small-table-value">    
+                            {% if variables.tn_modifiers  is defined %}
+                                {{ variables.tn_modifiers }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row small-table-row">
+                        <div class="col-md-8 small-table-label">
+                            Current TN
+                        </div>
+                        <div class="col-md-4 small-table-value">    
+                            {% if variables.current_tn  is defined %}
+                                {{ variables.current_tn }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="row">Armor</h2>
+            <div class="row ">
+                <div class="col-md-12 ArmorTable">
+                    <div class="row small-table-row">
+                        <div class="col-md-8 small-table-label">
+                            Armor Type
+                        </div>
+                        <div class="col-md-4 small-table-value">    
+                            {% if variables.armor_type is defined %}
+                                {{ variables.armor_type }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row small-table-row">
+                        <div class="col-md-8 small-table-label">
+                            Armor Bonus
+                        </div>
+                        <div class="col-md-4 small-table-value">    
+                            {% if variables.armor_bonus is defined %}
+                                {{ variables.armor_bonus }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row small-table-row">
+                        <div class="col-md-8 small-table-label">
+                            Damage Reduction
+                        </div>
+                        <div class="col-md-4 small-table-value">    
+                            {% if variables.damage_reduction is defined %}
+                                {{ variables.damage_reduction }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="row">Wounds</h2>
+            <div class="row">
+                <div class="col-md-12 woundsTable">
+                {% set earth = min(variables.stamina,variables.willpower) %}
+                    <div class="row small-table-row">
+                        <div class="col-md-6 small-table-header">
+                            Wound Level
+                        </div>
+                        <div class="col-md-2 small-table-header">    
+                            Pena.
+                        </div>
+                        <div class="col-md-2 small-table-header">    
+                            Total
+                        </div>
+                        <div class="col-md-2 small-table-header">    
+                            Current
+                        </div>
+                    </div>
+                    {% set healthy_wounds = earth * 5 %}
+                    {% set global_current_wounds = variables.global_current_wounds %}
+                    {% set global_wounds_penality  = variables.global_wounds_penality %}
+                    {%  if ( global_wounds_penality  >= healthy_wounds ) %}
+                        {% set global_wounds_penality  = global_wounds_penality  - healthy_wounds %}
+                        {% set healthy_wounds_penality = healthy_wounds %}
+                    {% else %}
+                        {% set healthy_wounds_penality = global_wounds_penality %}
+                        {% set global_wounds_penality = 0 %}
+                    {% endif %}
+                    {% set healthy_total  = healthy_wounds - healthy_wounds_penality %}
+                    {%  if ( global_current_wounds  >= healthy_total ) %}       
+                        {% set global_current_wounds  = global_current_wounds  - healthy_total %}
+                        {% set healthy_current_wounds = healthy_total %}
+                    {% else %}
+                        {% set healthy_current_wounds = global_current_wounds %}
+                        {% set global_current_wounds = 0 %}
+                    {% endif %}
+                    {% if healthy_current_wounds == healthy_total %}
+                        <div class="row small-table-row wound-empty">
+                    {% else %}
+                        {% if healthy_current_wounds > 0 %}
+                            <div class="row small-table-row wound-damaged">
+                        {% else %}
+                            <div class="row small-table-row wound-full">
+                        {% endif %}
+                    {% endif %}
+                        <div class="col-md-6 small-table-label">
+                            Healthy (+0)
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ healthy_wounds_penality }}
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ healthy_total }}
+                        </div>
+                        <div class="col-md-2 small-table-value current-wounds">    
+                            {{ healthy_current_wounds }}
+                        </div>
+                    </div>
+                    {% set nicked_wounds = earth * 2 %}
+                    {%  if ( global_wounds_penality  >= nicked_wounds ) %}
+                        {% set global_wounds_penality  = global_wounds_penality  - nicked_wounds %}
+                        {% set nicked_wounds_penality = nicked_wounds %}
+                    {% else %}
+                        {% set nicked_wounds_penality = global_wounds_penality %}
+                        {% set global_wounds_penality = 0 %}
+                    {% endif %}
+                    {% set nicked_total  = nicked_wounds - nicked_wounds_penality %}
+                    {%  if ( global_current_wounds  >= nicked_total ) %}
+                        {% set global_current_wounds  = global_current_wounds  - nicked_total %}
+                        {% set nicked_current_wounds = nicked_total %}
+                    {% else %}
+                        {% set nicked_current_wounds = global_current_wounds %}
+                        {% set global_current_wounds = 0 %}
+                    {% endif %}
+                    {% if nicked_current_wounds == nicked_total %}
+                        <div class="row small-table-row wound-empty">
+                    {% else %}
+                        {% if nicked_current_wounds > 0 %}
+                            <div class="row small-table-row wound-damaged">
+                        {% else %}
+                            <div class="row small-table-row wound-full">
+                        {% endif %}
+                    {% endif %}
+                        <div class="col-md-6 small-table-label">
+                            Nicked (+3)
+                        </div>
+                        <div class="col-md-2 small-table-value">
+                            {{ nicked_wounds_penality }}
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ nicked_total }}
+                        </div>
+                        <div class="col-md-2 small-table-value current-wounds">    
+                            {{ nicked_current_wounds }}
+                        </div>
+                    </div>
+                    {% set grazed_wounds = earth * 2 %}
+                    {%  if ( global_wounds_penality  >= grazed_wounds ) %}
+                        {% set global_wounds_penality  = global_wounds_penality  - grazed_wounds %}
+                        {% set grazed_wounds_penality = grazed_wounds %}
+                    {% else %}
+                        {% set grazed_wounds_penality = global_wounds_penality %}
+                        {% set global_wounds_penality = 0 %}
+                    {% endif %}
+                    {% set grazed_total  = grazed_wounds - grazed_wounds_penality %}
+                    {%  if ( global_current_wounds  >= grazed_total ) %}
+                        {% set global_current_wounds  = global_current_wounds  - grazed_total %}
+                        {% set grazed_current_wounds = grazed_total %}
+                    {% else %}
+                        {% set grazed_current_wounds = global_current_wounds %}
+                        {% set global_current_wounds = 0 %}
+                    {% endif %}
+                    {% if grazed_current_wounds == grazed_total %}
+                        <div class="row small-table-row wound-empty">
+                    {% else %}
+                        {% if grazed_current_wounds > 0 %}
+                            <div class="row small-table-row wound-damaged">
+                        {% else %}
+                            <div class="row small-table-row wound-full">
+                        {% endif %}
+                    {% endif %}
+                        <div class="col-md-6 small-table-label">
+                            Grazed (+5)
+                        </div>
+                        <div class="col-md-2 small-table-value">   
+                            {{ grazed_wounds_penality }}
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ grazed_total }}
+                        </div>
+                        <div class="col-md-2 small-table-value current-wounds"> 
+                            {{ grazed_current_wounds }}
+                        </div>
+                    </div>
+                    {% set hurt_wounds = earth * 2 %}
+                    {%  if ( global_wounds_penality  >= hurt_wounds ) %}
+                        {% set global_wounds_penality  = global_wounds_penality  - hurt_wounds %}
+                        {% set hurt_wounds_penality = hurt_wounds %}
+                    {% else %}
+                        {% set hurt_wounds_penality = global_wounds_penality %}
+                        {% set global_wounds_penality = 0 %}
+                    {% endif %}
+                    {% set hurt_total  = hurt_wounds - hurt_wounds_penality %}
+                    {%  if ( global_current_wounds  >= hurt_total ) %}
+                        {% set global_current_wounds  = global_current_wounds  - hurt_total %}
+                        {% set hurt_current_wounds = hurt_total %}
+                    {% else %}
+                        {% set hurt_current_wounds = global_current_wounds %}
+                        {% set global_current_wounds = 0 %}
+                    {% endif %}
+                    {% if hurt_current_wounds == hurt_total %}
+                        <div class="row small-table-row wound-empty">
+                    {% else %}
+                        {% if hurt_current_wounds > 0 %}
+                            <div class="row small-table-row wound-damaged">
+                        {% else %}
+                            <div class="row small-table-row wound-full">
+                        {% endif %}
+                    {% endif %}
+                        <div class="col-md-6 small-table-label">
+                            Hurt (+10)
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ hurt_wounds_penality }}
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ hurt_total }}
+                        </div>
+                        <div class="col-md-2 small-table-value current-wounds">    
+                            {{ hurt_current_wounds }}
+                        </div>
+                    </div>
+                    {% set injured_wounds = earth * 2 %}
+                    {%  if ( global_wounds_penality  >= injured_wounds ) %}
+                        {% set global_wounds_penality  = global_wounds_penality  - injured_wounds %}
+                        {% set injured_wounds_penality = injured_wounds %}
+                    {% else %}
+                        {% set injured_wounds_penality = global_wounds_penality %}
+                        {% set global_wounds_penality = 0 %}
+                    {% endif %}
+                    {% set injured_total  = injured_wounds - injured_wounds_penality %}
+                    {%  if ( global_current_wounds  >= injured_total ) %}
+                        {% set global_current_wounds  = global_current_wounds  - injured_total %}
+                        {% set injured_current_wounds = injured_total %}
+                    {% else %}
+                        {% set injured_current_wounds = global_current_wounds %}
+                        {% set global_current_wounds = 0 %}
+                    {% endif %}
+                    {% if injured_current_wounds == injured_total %}
+                        <div class="row small-table-row wound-empty">
+                    {% else %}
+                        {% if injured_current_wounds > 0 %}
+                            <div class="row small-table-row wound-damaged">
+                        {% else %}
+                            <div class="row small-table-row wound-full">
+                        {% endif %}
+                    {% endif %}
+                        <div class="col-md-6 small-table-label">
+                            Injured (+15)
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ injured_wounds_penality }}
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ injured_total }}
+                        </div>
+                        <div class="col-md-2 small-table-value current-wounds">    
+                            {{ injured_current_wounds }}
+                        </div>
+                    </div>
+                    {% set crippled_wounds = earth * 2 %}
+                    {%  if ( global_wounds_penality  >= crippled_wounds ) %}
+                        {% set global_wounds_penality  = global_wounds_penality  - crippled_wounds %}
+                        {% set crippled_wounds_penality = crippled_wounds %}
+                    {% else %}
+                        {% set crippled_wounds_penality = global_wounds_penality %}
+                        {% set global_wounds_penality = 0 %}
+                    {% endif %}
+                    {% set crippled_total  = crippled_wounds - crippled_wounds_penality %}
+                    {%  if ( global_current_wounds  >= crippled_total ) %}
+                        {% set global_current_wounds  = global_current_wounds  - crippled_total %}
+                        {% set crippled_current_wounds = crippled_total %}
+                    {% else %}
+                        {% set crippled_current_wounds = global_current_wounds %}
+                        {% set global_current_wounds = 0 %}
+                    {% endif %}
+                    {% if crippled_current_wounds == crippled_total %}
+                        <div class="row small-table-row wound-empty">
+                    {% else %}
+                        {% if crippled_current_wounds > 0 %}
+                            <div class="row small-table-row wound-damaged">
+                        {% else %}
+                            <div class="row small-table-row wound-full">
+                        {% endif %}
+                    {% endif %}
+                       <div class="col-md-6 small-table-label">
+                            Crippled (+20)
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ crippled_wounds_penality }}
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ crippled_total }}
+                        </div>
+                        <div class="col-md-2 small-table-value current-wounds">    
+                            {{ crippled_current_wounds }}
+                        </div>
+                    </div>
+                    {% set down_wounds = earth * 2 %}
+                    {%  if ( global_wounds_penality  >= down_wounds ) %}
+                        {% set global_wounds_penality  = global_wounds_penality  - down_wounds %}
+                        {% set down_wounds_penality = down_wounds %}
+                    {% else %}
+                        {% set down_wounds_penality = global_wounds_penality %}
+                        {% set global_wounds_penality = 0 %}
+                    {% endif %}
+                    {% set down_total  = down_wounds - down_wounds_penality %}
+                    {%  if ( global_current_wounds  >= down_total ) %}
+                        {% set global_current_wounds  = global_current_wounds  - down_total %}
+                        {% set down_current_wounds = down_total %}
+                    {% else %}
+                        {% set down_current_wounds = global_current_wounds %}
+                        {% set global_current_wounds = 0 %}
+                    {% endif %}
+                    {% if down_current_wounds == down_total %}
+                        <div class="row small-table-row wound-empty">
+                    {% else %}
+                        {% if down_current_wounds > 0 %}
+                            <div class="row small-table-row wound-damaged">
+                        {% else %}
+                            <div class="row small-table-row wound-full">
+                        {% endif %}
+                    {% endif %}
+                        <div class="col-md-6 small-table-label">
+                            Down (+40)
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ down_wounds_penality }}
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ down_total }}
+                        </div>
+                        <div class="col-md-2 small-table-value current-wounds">    
+                            {{ down_current_wounds }}
+                        </div>
+                    </div>
+                    {% set out_wounds = earth * 2 %}
+                    {%  if ( global_wounds_penality  >= out_wounds ) %}
+                        {% set global_wounds_penality  = global_wounds_penality  - out_wounds %}
+                        {% set out_wounds_penality = out_wounds %}
+                    {% else %}
+                        {% set out_wounds_penality = global_wounds_penality %}
+                        {% set global_wounds_penality = 0 %}
+                    {% endif %}
+                    {% set out_total  = out_wounds - out_wounds_penality %}
+                    {%  if ( global_current_wounds  >= out_total ) %}
+                        {% set global_current_wounds  = global_current_wounds  - out_total %}
+                        {% set out_current_wounds = out_total %}
+                    {% else %}
+                        {% set out_current_wounds = global_current_wounds %}
+                        {% set global_current_wounds = 0 %}
+                    {% endif %}
+                    {% if out_current_wounds == out_total %}
+                        <div class="row small-table-row wound-empty">
+                    {% else %}
+                        {% if out_current_wounds > 0 %}
+                            <div class="row small-table-row wound-damaged">
+                        {% else %}
+                            <div class="row small-table-row wound-full">
+                        {% endif %}
+                    {% endif %}
+                        <div class="col-md-6 small-table-label">
+                            Out
+                        </div>
+                        <div class="col-md-2 small-table-value"> 
+                            {{ out_wounds_penality }}
+                        </div>
+                        <div class="col-md-2 small-table-value">    
+                            {{ out_total }}
+                        </div>
+                        <div class="col-md-2 small-table-value current-wounds">    
+                            {{ out_current_wounds }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="row">Rate of Wounds Heal</h2>
+            <div class="row rohTable-line">
+                <div class="col-md-8 small-table-label">Sta. * 2 + Ins. Rank</div>   
+                {% set roh = variables.stamina|number_format %}    
+                {% set roh = roh * 2 %}    
+                {% set roh = roh + variables.rank|number_format %}  
+                <div class="col-md-4 small-table-value">{{ roh }}</div>
+            </div>
+            {% if variables.healt_regen_modifier is defined and variables.healt_regen_modifier|length >0 %}
+            <div class="row rohTable-line">
+                <div class="col-md-8 small-table-label">Modifier</div>
+                <div class="col-md-4 small-table-value">{{ variables.healt_regen_modifier }}</div>
+            </div>
+            <div class="row rohTable-line">
+                <div class="col-md-8 small-table-label">Current</div> 
+                {% set rohCurrent = roh + variables.healt_regen_modifier|number_format %}  
+                <div class="col-md-4 small-table-value">{{ rohCurrent }}</div>
+            </div>
+            {% endif %}
+        </div> 
+    </div>  

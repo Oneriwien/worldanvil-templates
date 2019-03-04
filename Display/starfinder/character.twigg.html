@@ -1,0 +1,184 @@
+{% macro displayAbilityTableRow(Name,ability,upgraded_ability) %}
+    <div class="row ability-table-row">
+        <div class="col-md-4 ability-label">{{Name}}</div>
+        <div class="col-md-2 ability-score">{{ability}}</div>
+        {% set mod = (ability - 10)//2 %}
+        <div class="col-md-2 ability-mod">{{mod}}</div>
+        <div class="col-md-2 ability-uscore">{{upgraded_ability}}</div>
+        {% set umod = (upgraded_ability - 10)//2 %}
+        <div class="col-md-2 ability-umod">{{umod}}</div>
+    </div>
+{% endmacro %}
+{% import _self as macros %}
+
+{% if variables.title is defined %}
+    <h1>{{variables.title}}</h1>
+{% endif %}
+<div class="row personal-info">
+    <h2>Personal Information</h2>
+    <div class="col-md-6">
+        <div class="row">
+            {% if variables.name is defined %}
+            <div class="col-md-4">Character Name</div>
+            <div class="col-md-8">{{variables.name}}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if variables.classlevels is defined %}
+            <div class="col-md-4">Class/Level</div>
+            <div class="col-md-8">{{variables.classlevels}}</div>
+	        {% endif %}
+        </div>
+        <div class="row">
+            {% if variables.deity is defined %}
+            <div class="col-md-4">Deity</div>
+            <div class="col-md-8">{{variables.deity}}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if variables.home_world is defined %}
+            <div class="col-md-4">Home World</div>
+            <div class="col-md-8">{{variables.home_world}}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if variables.size is defined %}
+            <div class="col-md-4">Size</div>
+            <div class="col-md-8">{{variables.size}}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            {% if variables.race is defined %}
+            <div class="col-md-4">Race</div>
+            <div class="col-md-8">{{variables.race}}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if variables.theme is defined %}
+            <div class="col-md-4">Theme</div>
+            <div class="col-md-8">{{variables.theme}}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if variables.alignement is defined %}
+            <div class="col-md-4">Alignement</div>
+            <div class="col-md-8">{{variables.alignement}}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if variables.gender is defined %}
+            <div class="col-md-4">Gender</div>
+            <div class="col-md-8">{{variables.gender}}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if variables.speed is defined %}
+            <div class="col-md-4">Speed</div>
+            <div class="col-md-8">{{variables.speed}}</div>
+            {% endif %}
+        </div>
+    </div>
+    {% if variables.description_ is defined %}
+    <div class="col-md-12">
+        <div class="row">
+            <h3>Description</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">{{ variables.description_}}</div>
+        </div>
+    </div>
+	{% endif %}
+</div>
+<div class="row main-content">
+    <div class="col-md-6 left-column">
+        <div class="row ability-table">
+            <div class="col-md-12">
+                <div class="row ability-table-title"><h2>Ability Scores</h2></div>
+                <div class="row ability-table-label">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">Score</div>
+                    <div class="col-md-2">Modifier</div>
+                    <div class="col-md-2">Upgraded Score</div>
+                    <div class="col-md-2">Upgraded Modifier</div>
+                </div>
+                <!-- 
+                    STR
+                -->
+                {% if variables.strength is defined %}
+                    {% if variables.upgraded_str is defined and variables.upgraded_str !="" %}
+                        {{macros.displayAbilityTableRow("Strength",variables.strength,variables.upgraded_str)}}
+                    {% else %}
+                        {{macros.displayAbilityTableRow("Strength",variables.strength,variables.strength)}}
+                    {% endif %}
+                {% endif %}
+                <!-- 
+                    DEX
+                -->
+                {% if variables.dexterity is defined %}
+                    {% if variables.upgraded_dex is defined and variables.upgraded_dex !="" %}
+                        {{macros.displayAbilityTableRow("Dexterity",variables.dexterity,variables.upgraded_dex)}}
+                    {% else %}
+                        {{macros.displayAbilityTableRow("Dexterity",variables.dexterity,variables.dexterity)}}
+                    {% endif %}
+                {% endif %}
+                <!-- 
+                    CON
+                -->
+                {% if variables.constitution is defined %}
+                    {% if variables.upgraded_con is defined and variables.upgraded_con !="" %}
+                        {{macros.displayAbilityTableRow("Constitution",variables.constitution,variables.upgraded_con)}}
+                    {% else %}
+                        {{macros.displayAbilityTableRow("Constitution",variables.constitution,variables.constitution)}}
+                    {% endif %}
+                {% endif %}
+                <!-- 
+                    INT
+                -->
+                {% if variables.intelligence is defined %}
+                    {% if variables.upgraded_int is defined and variables.upgraded_int !=""%}
+                        {{macros.displayAbilityTableRow("Intelligence",variables.intelligence,variables.upgraded_int)}}
+                    {% else %}
+                        {{macros.displayAbilityTableRow("Intelligence",variables.intelligence,variables.intelligence)}}
+                    {% endif %}
+                {% endif %}
+                <!-- 
+                    WIS
+                -->
+                {% if variables.wisdom is defined %}
+                    {% if variables.upgraded_wis is defined and variables.upgraded_wis !="" %}
+                        {{macros.displayAbilityTableRow("Wisdom",variables.wisdom,variables.upgraded_wis)}}
+                    {% else %}
+                        {{macros.displayAbilityTableRow("Wisdom",variables.wisdom,variables.wisdom)}}
+                    {% endif %}
+                {% endif %}
+                <!-- 
+                    CHA
+                -->
+                {% if variables.charisma is defined %}
+                    {% if variables.upgraded_cha is defined and variables.upgraded_cha !="" %}
+                        {{macros.displayAbilityTableRow("Charisma",variables.charisma,variables.upgraded_cha)}}
+                    {% else %}
+                        {{macros.displayAbilityTableRow("Charisma",variables.charisma,variables.charisma)}}
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 right-column">
+        
+    </div>
+</div>
+
+
+	
+	
+	{% if variables.skill_ranks_by_level is defined %}
+		<dt>Skill Ranks by Level</dt>
+		<dd> {{ variables.skill_ranks_by_level}} </dd>
+	{% endif %}
+	{% if variables.skills is defined %}
+		<dt>Skills</dt>
+		<dd> {{ variables.skills|ParseTable}} </dd>
+	{% endif %}
