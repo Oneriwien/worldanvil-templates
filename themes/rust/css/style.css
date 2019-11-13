@@ -25,7 +25,7 @@ Rust in Peace; A theme by Oneriwien (Damion Otter)*/
     --border-color: RGB(60, 40, 30);
     --lightborder-color: RGB(90, 70, 60);
     
-    --box-background: url(/themes/rust/images/papertexture.png);
+    --box-background: url(https://www.worldanvil.com/uploads/images/ffe5d36557f1ebc352092afee5f9005f.png);
     --box-border: 4px var(--border-color) solid;
     --box-shadow: inset 0 0 12px #000000;
 }
@@ -54,14 +54,14 @@ Rust in Peace; A theme by Oneriwien (Damion Otter)*/
 /* BODY */
 /* ==== */
 
-.page {
+.user-css, .user-css-extended .page {
     background: RGB(230, 225, 225);
     border: 6px RGB(60, 40, 30) solid;
     background-image: url(/themes/rust/images/articlebackground.jpg);
     box-shadow: inset 0 0 24px #000000;
     font-family: var(--primary-font);
     color: var(--primary-color);
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .presentation-interface {
@@ -78,18 +78,50 @@ Rust in Peace; A theme by Oneriwien (Damion Otter)*/
     margin-top: 10px;
 }
 
-.page .col-md-8 {
+.user-css-presentation .col-md-8 {
     background: var(--box-background);
     border: var(--box-border);
     box-shadow: var(--box-shadow);
-    padding: 14px;
+    padding: 10px;
+}
+
+.user-css-presentation .world-content .col-md-8 {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: inherent;
+}
+
+.user-css-presentation #world-category-content .panel-default {
+    background-image: url(/themes/rust/images/articlebackground.jpg);
+    border: var(--box-border) !important;
+    box-shadow: var(--box-shadow) !important;
+}
+
+.user-css-presentation .world-content .col-md-8 {
+background: var(--box-background);
+border: var(--box-border);
+box-shadow: var(--box-shadow);
 }
 
 .user-css-extended .tab-content {
     background: var(--box-background);
     border: var(--box-border);
     box-shadow: var(--box-shadow);
-    padding: 14px;
+    padding: 10px;
+}
+
+.user-css-presentation .followers-counter .panel-default {
+    background: var(--box-background);
+    border: var(--box-border);
+    box-shadow: var(--box-shadow);
+}
+
+.user-css-presentation #world-menu {
+    background: var(--box-background);
+    border: var(--box-border);
+    box-shadow: var(--box-shadow);
+margin-bottom: 20px;
 }
 
 /* ======== */
@@ -101,6 +133,34 @@ Rust in Peace; A theme by Oneriwien (Damion Otter)*/
     border: var(--box-border);
     box-shadow: inset 0 0 36px #000000;
     font-size: 100px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 6px;
+    margin: 10px;
+    margin-top: 20px;
+    font-family: FrederickatheGreat;
+    background: -webkit-linear-gradient(RGB(20, 10, 5), RGB(40, 20, 10), RGB(50, 30, 20), RGB(20, 10, 5));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.user-css-presentation .article-title {
+    background: var(--box-background);
+    border: var(--box-border);
+    box-shadow: var(--box-shadow);
+background: url(https://www.worldanvil.com/uploads/images/ffe5d36557f1ebc352092afee5f9005f.png);
+}
+
+.user-css-presentation .article-title h1 {
+box-shadow: none;
+border: none;
+}
+
+.user-css-presentation #world-category-content h1 {
+    font-family: var(--heading-font);
+    border: none;
+    box-shadow: none;
+    font-size: 60px;
     text-align: center;
     text-transform: uppercase;
     padding: 6px;
@@ -814,4 +874,9 @@ Rust in Peace; A theme by Oneriwien (Damion Otter)*/
   right:0;
   display: none;
   border: 0;
+}
+
+.world-content .panel-default {
+border: none;
+box-shadow: none;
 }
